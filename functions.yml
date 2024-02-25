@@ -1,6 +1,6 @@
 DICTIONARY:
   handler: lambda.handler
-  name: DictionaryApi-prod
+  name: DictionaryApi-${self:provider.stage}
   memorySize: 256
   timeout: 30
   logRetentionInDays: 30

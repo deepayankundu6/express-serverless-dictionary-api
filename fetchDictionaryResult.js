@@ -6,9 +6,10 @@ const callDictionaryApi = async (word) => {
             method: "GET",
             redirect: "follow"
         };
-        const response = await fetch(`${process.env.DICTIONARY_API_DOMAIN}/entries/en/${word}`, requestOptions);
+        const URL = `${process.env.DICTIONARY_API_DOMAIN}/entries/en/${word}`
+        const response = await fetch(URL, requestOptions);
         return await response.json();
-    }catch (error){
+    } catch (error) {
         console.log("Error occured while calling the dictionary api.")
         throw new Error("Some error occured: " + error.message);
     }

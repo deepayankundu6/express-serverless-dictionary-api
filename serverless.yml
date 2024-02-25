@@ -1,4 +1,4 @@
-service: chatgpt-nest-serverless-lambda
+service: dictionary-serverless-lambda
 frameworkVersion: "3"
 
 plugins:

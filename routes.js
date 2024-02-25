@@ -15,9 +15,14 @@ app.get("/health", (req, res) => {
 
 app.get("/dictionary/:word", async (req, res) => {
     try {
-        const word = req.params;
-        const dictionaryApiResponse = await callDictionaryApi(word);
-        res.send(processDictionaryResult(...dictionaryApiResponse));
+        const SearchWord = req.params.word;
+        const dictionaryApiResponse = await callDictionaryApi(SearchWord);
+        if (dictionaryApiResponse?.length) {
+            res.send(processDictionaryResult(...dictionaryApiResponse));
+            return 0
+        }
+        res.send(dictionaryApiResponse);
+        return 0
     } catch (e) {
         res.status(500).send({
             "error": e.message
