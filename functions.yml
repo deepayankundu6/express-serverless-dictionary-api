@@ -7,7 +7,7 @@ DICTIONARY:
   events:
     - http:
         path: /{proxy+}
-        method: GET
+        method: get
         cors:
           origin: "*"
           headers:
