@@ -1,4 +1,6 @@
 const express = require("express");
+const { callDictionaryApi } = require("./fetchDictionaryResult");
+const { processDictionaryResult } = require("./processResult");
 
 const app = express();
 app.use(express.json());
@@ -11,5 +13,16 @@ app.get("/health", (req, res) => {
     })
 });
 
+app.get("/dictionary/:word", async (req, res) => {
+    try {
+        const word = req.params;
+        const dictionaryApiResponse = await callDictionaryApi(word);
+        res.send(processDictionaryResult(...dictionaryApiResponse));
+    } catch (e) {
+        res.status(500).send({
+            "error": e.message
+        });
+    }
+});
 
 module.exports = app;
