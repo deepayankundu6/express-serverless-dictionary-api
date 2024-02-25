@@ -1,0 +1,29 @@
+service: chatgpt-nest-serverless-lambda
+frameworkVersion: "3"
+
+plugins:
+  - serverless-plugin-optimize
+  - serverless-prune-plugin
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  environment:
+    DICTIONARY_API_DOMAIN: ${file(env.yml):DICTIONARY_API}
+  stage: prod
+  region: ${file(env.yml):REGION}
+
+custom:
+  prune:
+    automatic: true
+    number: 5
+
+package:
+  individually: true
+
+functions:
+  - ${file(functions.yml)}
+
+resources:
+  - ${file(cloud-formation.yml)}

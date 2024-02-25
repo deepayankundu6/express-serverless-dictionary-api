@@ -1,0 +1,13 @@
+Resources: 
+ ApiKey:
+  Type: AWS::ApiGateway::ApiKey
+  Properties:
+    Name: DictionaryAPIKey
+    Description: Dictionary Api Key for API Gateway
+    Enabled: true
+
+ UsagePlan:
+  Type: AWS::ApiGateway::UsagePlan
+  Properties:
+    Description: Dictionary Api Usage plan
+    UsagePlanName: Dictionary Api Usage plan

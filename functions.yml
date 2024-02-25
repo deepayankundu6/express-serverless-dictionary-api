@@ -1,0 +1,16 @@
+DICTIONARY:
+  handler: lambda.handler
+  name: DictionaryApi-prod
+  memorySize: 256
+  timeout: 30
+  logRetentionInDays: 30
+  events:
+    - http:
+        path: /{proxy+}
+        method: any
+        cors:
+          origin: "*"
+          headers:
+            - x-api-key
+          allowCredentials: true
+          cacheControl: "max-age=600, s-maxage=600, proxy-revalidate"
