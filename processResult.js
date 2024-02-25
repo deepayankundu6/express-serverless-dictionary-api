@@ -1,19 +1,21 @@
 function processResult(partOfSpeech, definitions) {
     let result = {};
-    let defination = definitions[0]?.definition;
-    let example = definitions[0]?.example
-    if(partOfSpeech){
-       let tempJson = {};
-       if(defination){
-        tempJson["Defination"] = defination
-       }
-       if(example){
-        tempJson["Example"] = example
-       }
-       result[partOfSpeech] = tempJson;
-    };
-   return result;
-
+    if (partOfSpeech && definitions) {
+        let temp = [];
+        for (definition of definitions) {
+            let tempObj = {}
+            if (definition.hasOwnProperty("definition")) {
+                tempObj["Definition"] = definition.definition
+            }
+            if (definition.hasOwnProperty("example")) {
+                tempObj["Example"] = definition.example
+            }
+            temp.push(tempObj);
+        }
+        result[partOfSpeech] = temp;
+    }
+    
+    return result;
 }
 
 const processDictionaryResult = (response) => {
